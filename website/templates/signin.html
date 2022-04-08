@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Ampics | Sign in</title>
+
+    <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Sign in</h2>
+        <div>
+            <label for="#name">Username:</label>
+            {{ form.username }}
+        </div>
+
+        <div>
+            <label for="#pwd">Email:</label>
+            {{ form.email }}
+        </div>
+
+
+        <div>
+            <label for="#pwd">Password:</label>
+            {{ form.password1 }}
+        </div>
+
+        <div>
+            <label for="#pwd">Confirm password:</label>
+            {{ form.password2 }}
+        </div>
+
+        {{ form.errors }}
+
+        <input class="submit-btn" type="submit" value="Sign in">
+        <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+    </form>
+
+    <script>
+        let form_fields = document.getElementsByTagName('input');
+        form_fields[1].placeholder = "Username...";
+        form_fields[2].placeholder = "Email...";
+        form_fields[3].placeholder = "Password...";
+        form_fields[4].placeholder = "Re-enter password...";
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Popins', Arial, Helvetica;
+}
+
+:root {
+    --theme-color: #ff2600;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.menu {
+    width: 20vw;
+    height: 100vh;
+    background-color: var(--theme-color);
+    padding-top: 20px;
+    position: relative;
+    display: none;
+    flex-direction: column;
+    transition: display 1s ease-in;
+}
+
+.cross {
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    font-size: 25px;
+    right: 10px;
+    top: 10px;
+}
+
+.menu .logo {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.menu ul li {
+    list-style: none;
+    display: block;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.menu ul li:hover  {
+    background: #f3f3f3;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+}
+
+.visited {
+    border-left: 2px double var(--theme-color);
+    background: #fff;
+}
+
+.visited a{
+    color: var(--theme-color);
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.logo {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.navigator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-menu {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-right: 20px;
+}
+
+.btn-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin-top: 3px;
+}
+
+.navigator h2 {
+    color: #000;
+    font-size: 17px;
+    font-weight: 550;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.log-out {
+    background: var(--theme-color);
+    color: #f1f1f1 !important;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+.panel div {
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.dashboard {
+    width: 100%;
+    height: 79vh;
+}
+
+.cards {
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 250px;
+    height: 150px;
+    background: #fff;
+    margin: 15px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.card h2 {
+    color: #444;
+}
+
+.card h4 {
+    color: #999;
+}
+
+.icon img {
+    width: 20px;
+    height: 20px;
+}
+
+@media(max-width: 688px) {
+    .card {
+        width: 100%;
+        justify-content: center;
+    }
+    .card .icon {
+        margin-left: 20px;
+    }
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tab {
+    min-height: 50vh;
+    flex: 5;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.stats {
+    flex: 2;
+    background-color: #fff;
+    min-height: 50vh;
+    margin: 0 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+.tab h3,
+.stats h3 {
+    margin: 20px;
+    font-weight: 600;
+    color: #444;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f3f3f3;
+    margin-top: 20px;
+}
+
+.users-table thead tr {
+    border: 3px 3px 0 0;
+    text-align: left;
+}
+
+.users-table th,
+.users-table tbody td {
+    padding: 8px 15px;
+}
+
+.users-table tbody tr {
+    background-color: white;
+}
+
+.users-table tbody td button {
+    padding: 5px 10px;
+    border: 0;
+    color: white;
+    background-color: #0350f5;
+    border-radius: 3px;
+}

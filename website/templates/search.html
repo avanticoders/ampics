@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ampics | search results</title>
+    {% load static %}
+
+    <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <style>
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            overflow-x: hidden;
+        }
+        .my-links {
+            color: #777 !important;
+        }
+        h1 {
+            font-weight: 400;
+            color: #444;
+            padding: 50px;
+        }
+        .btn-menu div {
+            background-color: #444;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <span class="logo">AmPics</span>
+        <ul>
+            <li><a class="my-links" href="/">Home</a></li>
+            <li><a class="my-links" href="#about">About</a></li>
+            <li><a class="my-links" href="/user-profile/">Profile</a></li>
+            <li><a class="my-links" href="/logout/">Log out</a></li>
+        </ul>
+        <div onclick="open_menu()" class="btn-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="menu" id="menu">
+        <a class="cross" onclick="close_menu()">&times;</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="/user-profile/">Profile</a></li>
+            <li><a href="logout/">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        {% if found %}
+            {% for image in images %}
+                <div class="image">
+                    <img src="{{ image.image.url }}" >
+                    <a href="{{ image.image.url }}" download="ampics-photos {{ image.image.id }}"><img src="{% static 'images/downloads.png' %}" ></a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>No Results...</h1>
+        {% endif %}
+    </div>
+
+    <div class="footer" id="about">
+        <div class="about">
+            <h2>About Us</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit deserunt a id consectetur animi aliquam quia, doloribus voluptas reprehenderit placeat nemo praesentium iure quae error magnam quam eum dolorum?
+            </p>
+            <ul>
+                <li><a href="https://facebook.com/"><img src="{% static 'images/facebook.png' %}" ></a></li>
+                <li><a href="https://twitter.com/"><img src="{% static 'images/twitter.png' %}" ></a></li>
+                <li><a href="https://instagram.com/its.hektic" target="blank"><img src="{% static 'images/instagram.png' %}" ></a></li>
+                <li><a href="https://youtube.com/"><img src="{% static 'images/youtube.png' %}" ></a></li>
+            </ul>
+        </div>
+        <div class="quicklinks">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="">Privay policy</a></li>
+                <li><a href="">Help</a></li>
+                <li><a href="">Terms & Conditions</a></li>
+                <li><a href="/logout/">Log out</a></li>
+            </ul>
+        </div>
+        <div class="links">
+            <h2>Contact Us</h2>
+            <ul>
+                <li>
+                    <!-- <span><i class="fa fa-map-marker" aria-hidden="true"></i></span> -->
+                    <span>109 Chuka<br>
+                    Kenya</span>
+                </li>
+                <li>
+                    <!-- <span><i class="fa fa-phone" aria-hidden="true"></i></span> -->
+                    <span><a href="tel:254 742704481">+254 742704481</a><br>
+                        <a href="tel:254 742704481">+254 742704481</a></span>
+                </li>
+                <li>
+                    <!-- <span><i class="fa fa-envelope" aria-hidden="true"></i></span> -->
+                    <span><a href="mailto:delsean72@gmail.com">delsean72@gmail.com</a></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

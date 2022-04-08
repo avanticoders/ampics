@@ -1,0 +1,1 @@
+web: gunicorn Ampics.wsgi.py --log-file -

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Ampics | Home</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> -->
+    <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    {% for message in messages %}
+        <p id="msg" style="color: aqua;">{{ message }}</p>
+    {% endfor %}
+    <div class="main">
+        <div class="navbar">
+            <span class="logo">AmPics</span>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <ul>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="upload/">Upload</a></li>
+                        <li><a href="user-profile/">Profile</a></li>
+                        <li><a href="logout/">Log out</a></li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="upload/">Upload</a></li>
+                        <li><a href="user-profile/">Profile</a></li>
+                        <li><a href="logout/">Log out</a></li>
+                    </ul>
+                {% endif %}
+            {% endif %}
+            <div onclick="open_menu()" class="btn-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="menu" id="menu">
+            <a class="cross" onclick="close_menu()">&times;</a>
+            {% if user.is_staff %}
+                <ul>
+                    <li><a href="#explore">Explore</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="upload/">Upload</a></li>
+                    <li><a href="user-profile/">Profile</a></li>
+                    <li><a href="logout/">Log out</a></li>
+                </ul>
+            {% else %}
+                <ul>
+                    <li><a href="#explore">Explore</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="upload/">Upload</a></li>
+                    <li><a href="user-profile/">Profile</a></li>
+                    <li><a href="logout/">Log out</a></li>
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="content">
+            <h1>Quality <span>Photos</span></h1>
+            <form class="search" action="{% url 'search/' %}" method="post">
+                {% csrf_token %}
+                <input id="search" name="search" type="search" placeholder="Search photos here..." >
+                <button type="submit"><img src="{% static 'images/search.png' %}" ></button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="container" id="explore">
+        {% for image in uploads %}
+            <div class="image">
+                <img src="{{ image.image.url }}" >
+                <a href="{{ image.image.url }}" download="ampics-photos-{{ image.image.id }}"><img src="{% static 'images/downloads.png' %}" ></a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer" id="about">
+        <div class="about">
+            <h2>About Us</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit deserunt a id consectetur animi aliquam quia, doloribus voluptas reprehenderit placeat nemo praesentium iure quae error magnam quam eum dolorum?
+            </p>
+            <ul>
+                <li><a href="https://facebook.com/"><img src="{% static 'images/facebook.png' %}" ></a></li>
+                <li><a href="https://twitter.com/"><img src="{% static 'images/twitter.png' %}" ></a></li>
+                <li><a href="https://instagram.com/its.hektic" target="blank"><img src="{% static 'images/instagram.png' %}" ></a></li>
+                <li><a href="https://youtube.com/"><img src="{% static 'images/youtube.png' %}" ></a></li>
+            </ul>
+        </div>
+        <div class="quicklinks">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="">Privay policy</a></li>
+                <li><a href="">Help</a></li>
+                <li><a href="">Terms & Conditions</a></li>
+                <li><a href="/logout/">Log out</a></li>
+            </ul>
+        </div>
+        <div class="links">
+            <h2>Contact Us</h2>
+            <ul>
+                <li>
+                    <!-- <span><i class="fa fa-map-marker" aria-hidden="true"></i></span> -->
+                    <span>109 Chuka<br>
+                    Kenya</span>
+                </li>
+                <li>
+                    <!-- <span><i class="fa fa-phone" aria-hidden="true"></i></span> -->
+                    <span><a href="tel:254 742704481">+254 742704481</a><br>
+                        <a href="tel:254 742704481">+254 742704481</a></span>
+                </li>
+                <li>
+                    <!-- <span><i class="fa fa-envelope" aria-hidden="true"></i></span> -->
+                    <span><a href="mailto:delsean72@gmail.com">delsean72@gmail.com</a></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

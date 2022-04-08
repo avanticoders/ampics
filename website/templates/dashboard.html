@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Ampics | Dashboard</title>
+    <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div class="main">
+        <div class="menu" id="dash">
+            <span class="logo">Ampics</span>
+            <ul>
+                <li class="visited"><a href="dashboard/">Dashboard</a></li>
+                <li><a href="/">Home</a></li>
+                <!-- <li><a href="">Users</a></li>
+                <li><a href="">Database</a></li>
+                <li><a href="">About</a></li> -->
+            </ul>
+            <a onclick="close_dash_menu()" class="cross">&times;</a>
+        </div>
+
+        <div class="grid">
+            <div class="navbar">
+                <div class="navigator">
+                    <div class="btn-menu" onclick="open_dash_menu()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <h2>Dashboard</h2>
+                </div>
+                <ul>
+                    <li><a class="log-out" href="/admin/">Admin</a></li>
+                    <li><a class="log-out" href="{% url 'logout' %}">Log out</a></li>
+                </ul>
+            </div>
+
+            <div class="panel">
+                <div class="dashboard" id="dashboard-panel">
+
+                    <div class="cards">
+                        <div class="card">
+                            <div class="text">
+                                <h2>{{ total_users }}</h2>
+                                <h4>Users</h4>
+                            </div>
+                            <div class="icon">
+                                <img src="{% static 'images/users.png' %}" >
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="text">
+                                <h2>{{ uploads }}</h2>
+                                <h4>Uploads</h4>
+                            </div>
+                            <div class="icon">
+                                <img src="{% static 'images/uploads.png' %}" >
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="text">
+                                <h2>1000</h2>
+                                <h4>Downloads</h4>
+                            </div>
+                            <div class="icon">
+                                <img src="{% static 'images/downloads.png' %}" >
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="text">
+                                <h2>{{ active }}</h2>
+                                <h4>Active</h4>
+                            </div>
+                            <div class="icon">
+                                <img src="{% static 'images/active.png' %}" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="tab">
+                            <h3>Top Users</h3>
+                            <hr>
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Userame</th>
+                                        <th>Uploads</th>
+                                        <th>Downloads</th>
+                                        <th>Status</th>
+                                        <!-- <th>Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for acc in accounts %}
+                                        <tr>
+                                            <td>{{acc.user.username}}</td>
+                                            <td>{{acc.uploads}}</td>
+                                            <td>{{acc.downloads}}</td>
+                                            <td>Active</td>
+                                            <!-- <td><button>View</button></td> -->
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="stats">
+                            <h3>New Users</h3>
+                            <hr>
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.email }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

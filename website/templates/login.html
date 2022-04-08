@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Ampics | Log in</title>
+
+    <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Log in</h2>
+        <div>
+            <label for="#name">Username:</label>
+            <input id="name" name="username" type="text" placeholder="Username" required>
+        </div>
+
+        <div>
+            <label for="#pwd">Password:</label>
+            <input id="pwd" name="password" type="password" placeholder="Password" required>
+        </div>
+
+        {% for message in messages %}
+            <p id="msg" style="color: var(--theme-color);">{{ message }}</p>
+        {% endfor %}
+
+        <input class="submit-btn" type="submit" value="Log in">
+        <p>Don't have an account? <a href="{% url 'signin' %}">Sign in</a></p>
+        <p><a href="/reset-password/">Forgot password?</a></p>
+    </form>
+</body>
+</html>

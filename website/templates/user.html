@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	{% load static %}
+	<title>Ampics | Profile</title>
+
+	<link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<div class="navbar">
+        <div class="navigator">
+            <div class="btn-menu" onclick="open_dash_menu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h2 style="text-transform: uppercase;">{{ request.user }}</h2>
+        </div>
+        <ul>
+        	<li><a href="{% url 'home' %}">Home</a></li>
+			<li><a href="/upload/">Upload</a></li>
+	        <li><a class="log-out" href="{% url 'logout' %}">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="user-grid">
+    	<div class="profile">
+    		<div class="header">
+    			<h2>Profile</h2>
+    		</div>
+    		<img class="profile-pic" src="{{ request.user.account.profile_pic.url }}">
+    		<div class="content">
+    			<div class="box">
+    				<p>Uploads</p>
+    				<h2>{{ request.user.account.uploads }}</h2>
+    				
+    			</div>
+    			<div class="box">
+    				<p>Downloads</p>
+    				<h2>{{ request.user.account.downloads }}</h2>
+    			</div>
+    		</div>
+    	</div>
+
+    	<div class="user-details">
+    		<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+    			<h2>User Details</h2>
+		        <div>
+		            <label for="#name">Username:</label>
+		            {{ form.name }}
+		        </div>
+
+		        <div>
+		            <label for="#name">Email:</label>
+		            {{ form.email }}
+		        </div>
+
+		        <!-- <div>
+		            <label for="#pwd">Password:</label>
+		            {{ form.user.password }}
+		        </div> -->
+
+		        <div>
+		            <label for="#pc">Profile picture:</label>
+		            <p style="display: inline-block;">{{ form.profile_pic }}</p>
+		        </div>
+
+		        {% for message in messages %}
+		            <p id="msg" style="color: aqua;">{{ message }}</p>
+		        {% endfor %}
+
+		        <input class="submit-btn" type="submit" value="Update">
+    		</form>
+    	</div>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
