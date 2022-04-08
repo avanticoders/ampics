@@ -1,1 +1,1 @@
-web: gunicorn ampics.wsgi --log-file -
+web: gunicorn Ampics.wsgi --log-file -
