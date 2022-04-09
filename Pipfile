@@ -9,6 +9,7 @@ whitenoise = "*"
 pillow = "*"
 gunicorn = "*"
 python-decouple = "*"
+django-heroku = "*"
 
 [dev-packages]
 
