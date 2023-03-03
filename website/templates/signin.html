@@ -35,7 +35,7 @@
             {{ form.password2 }}
         </div>
 
-        {{ form.errors }}
+        <p class="errors">{{ form.errors }}</p>
 
         <input class="submit-btn" type="submit" value="Sign in">
         <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>

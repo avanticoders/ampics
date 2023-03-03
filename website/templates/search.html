@@ -9,6 +9,10 @@
 
     <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="C:\Users\USER\Downloads\Compressed\fontawesome-free-6.3.0-web\css\all.min.css">
+    <link rel="stylesheet" href="C:\Users\USER\Downloads\Compressed\fontawesome-free-6.3.0-web\css\fontawesome.min.css">
     <style>
         body {
             width: 100%;
@@ -59,10 +63,18 @@
 
     <div class="container">
         {% if found %}
-            {% for image in images %}
+            {% for upload in images %}
                 <div class="image">
-                    <img src="{{ image.image.url }}" >
-                    <a href="{{ image.image.url }}" download="ampics-photos {{ image.image.id }}"><img src="{% static 'images/downloads.png' %}" ></a>
+                    <img src="{{ upload.image.url }}" >
+                    <div class="wrapper">
+                        <div class="info">
+                            <img src="{{ upload.account.profile_pic.url }}" alt="">
+                            <p>{{ upload.account.name }}</p>
+                        </div>
+                        <a href="{{ upload.image.url }}" download="ampics-photos {{ image.image.id }}">
+                            Download
+                        </a>
+                    </div>
                 </div>
             {% endfor %}
         {% else %}

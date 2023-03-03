@@ -14,8 +14,8 @@
         <div class="menu" id="dash">
             <span class="logo">Ampics</span>
             <ul>
-                <li class="visited"><a href="dashboard/">Dashboard</a></li>
-                <li><a href="/">Home</a></li>
+                <!-- <li class="visited"><a href="dashboard/">Dashboard</a></li>
+                <li><a href="/">Home</a></li> -->
                 <!-- <li><a href="">Users</a></li>
                 <li><a href="">Database</a></li>
                 <li><a href="">About</a></li> -->
@@ -26,15 +26,16 @@
         <div class="grid">
             <div class="navbar">
                 <div class="navigator">
-                    <div class="btn-menu" onclick="open_dash_menu()">
+                    <div class="btn-menu">  <!-- onclick="open_dash_menu() -->
                         <div></div>
                         <div></div>
                         <div></div>
                     </div>
-                    <h2>Dashboard</h2>
+                    <h2>{{ user.username }}</h2>
                 </div>
                 <ul>
-                    <li><a class="log-out" href="/admin/">Admin</a></li>
+                    <li><a class="log-out" href="{% url 'home' %}">Home</a></li>
+                    <!-- <li><a class="log-out" href="/admin/">Admin</a></li> -->
                     <li><a class="log-out" href="{% url 'logout' %}">Log out</a></li>
                 </ul>
             </div>

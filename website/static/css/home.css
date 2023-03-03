@@ -8,6 +8,7 @@
 
 :root {
     --theme-color: #ff2600;
+    --theme-color-light: rgba(255, 38, 0, .8);
 }
 
 body {
@@ -17,11 +18,21 @@ body {
 .main {
     width: 100%;
     position: relative;
+    display: flex;
     height: 100vh;
     background-color: #999 !important;
-    background: url('../images/yellow-twig.jpg') no-repeat;
+    background: url('../images/yellow.jpg') no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to right, rgba(255, 216, 43, 0.4), rgba(0, 0, 0, 0.8));
+    background-size: cover;
+    z-index: 1;
 }
 
 .navbar {
@@ -30,14 +41,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 7%;
+    padding-right: 3%;
+    z-index: 99;
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 600;
-    color: var(--theme-color);
+    color: #f4f4f4;
     cursor: pointer;
 }
 
@@ -83,16 +95,16 @@ body {
 
 .menu {
     position: fixed;
-    width: 30vh;
-    padding: 5px 0;
+    width: 80vh;
+    padding: 20% 25%;
     right: 0;
     top: 0;
-    background: var(--theme-color);
+    background: var(--theme-color-light);
     color: #fff;
     display: none;
     flex-direction: column;
     transition: display 1s ease-in;
-    z-index: 10;
+    z-index: 100;
 }
 
 .cross {
@@ -100,8 +112,8 @@ body {
     cursor: pointer;
     position: absolute;
     font-size: 25px;
-    right: 10px;
-    top: 10px;
+    right: 30px;
+    top: 19px;
 }
 
 .menu ul {
@@ -111,7 +123,7 @@ body {
 .menu ul li {
     list-style: none;
     display: block;
-    padding: 10px 40px;
+    padding: 10px 80px;
     width: 100%;
 }
 
@@ -149,16 +161,24 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 5;
 }
 
 .content h1 {
     font-size: 40px;
     font-weight: 600;
+    margin-bottom: 10px;
+    /* color: var(--theme-color); */
 }
 
 .content h1 span {
-    font-weight: 100;
-    color: var(--theme-color);
+    font-size: 60px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.content p {
+    margin-bottom: 20px;
 }
 
 .search {
@@ -178,7 +198,6 @@ body {
 }
 
 .search button {
-    background: red;
     border: 0;
     outline: 0;
     align-items: center;
@@ -206,6 +225,29 @@ body {
     .search input {
         width: 60%;
     }
+}
+
+.category-links ul {
+    list-style: none;
+}
+
+.category-links ul li{
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 50px;
+    /* padding: 3px 10px; */
+    /* background: rgba(0, 0, 0, .1); */
+    border-radius: 3px;
+}
+
+.category-links ul li a {
+    padding: 8px 0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.category-links ul li a:hover {
+    border-bottom: 2px solid var(--theme-color);
 }
 
 .footer {

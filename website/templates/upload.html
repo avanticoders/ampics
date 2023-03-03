@@ -9,6 +9,20 @@
 
     <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <style>
+        #lab {
+            margin-top: 0;
+            margin-bottom: 10px;
+            background: none;
+            border: 2px solid var(--theme-color);
+            border-radius: 3px;
+            color: var(--theme-color);
+        }
+    </style>
 </head>
 <body>
     <form action="/upload/" method="post" enctype="multipart/form-data">
@@ -31,8 +45,8 @@
         </div>
 
         <div>
-            <label for="#pc">Image:</label>
-            {{form.image}}
+            <input type="file" class="upload" id="prof" accept="image/*" name="image">
+            <label id="lab" for="prof"><i class="fa-solid fa-upload"></i> Upload</label>
         </div>
 
         <input class="submit-btn" type="submit" value="Upload">

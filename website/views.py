@@ -10,13 +10,16 @@ from .decorators import unauthenticated_user, allowed_users
 
 from random import randint
 
-# Create your views here.
+
 @login_required(login_url='login')
 def homepage(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
     # Get all images in the database
-    uploads = Upload.objects.all()
+    uploads = Upload.objects.filter(category__icontains=q)
 
     return render(request, 'home.html', {'uploads':uploads})
+
 
 @login_required(login_url='login')
 # @allowed_users(allowed_roles=['customer'])
@@ -33,6 +36,7 @@ def search_images(request):
         context = {'found': found, 'images':image_results}
         return render(request, 'search.html', context)
 
+
 @login_required(login_url='login')
 # @allowed_users(allowed_roles=['customer'])
 def user_profile(request):
@@ -43,8 +47,9 @@ def user_profile(request):
         form = AccountForm(data=request.POST, files=request.FILES, instance=customer)
         if form.is_valid():
             form.save()
-            print(form)
             
+            return redirect('user-profile')
+
     context = {'form':form}
     return render(request, 'user.html', context)
 
@@ -70,6 +75,7 @@ def upload(request):
 
     context = {'form':form}
     return render(request, 'upload.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -97,6 +103,7 @@ def dashboard(request):
     context = {'users' : all_users[display_users:], 'total_users' : total_users, 'active' : active, 'accounts':accounts[:7], 'uploads':uploads}
     return render(request, 'dashboard.html', context)
 
+
 @unauthenticated_user
 def signin(request):
     if request.method == 'POST':
@@ -113,6 +120,7 @@ def signin(request):
     context = {'form' : form}
     return render(request, 'signin.html', context)
 
+
 @unauthenticated_user
 def login_page(request):
     if request.method == 'POST':
@@ -128,7 +136,13 @@ def login_page(request):
 
     return render(request, 'login.html')
 
+
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+
+# TAKE CARE OF THIS
+    # fORGOT PASSWORD PAGE

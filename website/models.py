@@ -22,10 +22,11 @@ class Upload(models.Model):
         ("Sports", "Sports"),
         ('Fashion', 'Fashion'),
         ('Technology', 'Technology'),
-        ('Science', 'Science')
+        ('Science', 'Science'),
+        ('Food', "Food")
     )
-    account = models.ForeignKey(Account, null=True, on_delete=models.SET_NULL)
-    caption = models.CharField(max_length=200, blank=False)
+    account = models.ForeignKey(Account, null=True, on_delete=models.CASCADE)
+    caption = models.CharField(max_length=200, blank=False, unique=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     image = models.ImageField(null=True, blank=True, upload_to="uploads/")
 

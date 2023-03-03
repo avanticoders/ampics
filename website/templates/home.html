@@ -10,12 +10,15 @@
     <link rel="shortcut icon" href="{% static 'images/ampics.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- Font Awesome -->
 </head>
 <body>
     {% for message in messages %}
         <p id="msg" style="color: aqua;">{{ message }}</p>
     {% endfor %}
     <div class="main">
+        <div class="overlay"></div>
         <div class="navbar">
             <span class="logo">AmPics</span>
             {% if user.is_authenticated %}
@@ -23,7 +26,7 @@
                     <ul>
                         <li><a href="#explore">Explore</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="/dashboard/">Dashboard</a></li>
                         <li><a href="upload/">Upload</a></li>
                         <li><a href="user-profile/">Profile</a></li>
                         <li><a href="logout/">Log out</a></li>
@@ -51,7 +54,7 @@
                 <ul>
                     <li><a href="#explore">Explore</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="/dashboard/">Dashboard</a></li>
                     <li><a href="upload/">Upload</a></li>
                     <li><a href="user-profile/">Profile</a></li>
                     <li><a href="logout/">Log out</a></li>
@@ -68,22 +71,42 @@
         </div>
 
         <div class="content">
-            <h1>Quality <span>Photos</span></h1>
+            <h1 style="text-transform: uppercase"><span>AmPics</span> photos</h1>
+            <p>The best stock photos for personal and commercial use.</p>
             <form class="search" action="{% url 'search/' %}" method="post">
                 {% csrf_token %}
-                <input id="search" name="search" type="search" placeholder="Search photos here..." >
+                <input id="search" name="search" type="text" placeholder="Search photos here..." >
                 <button type="submit"><img src="{% static 'images/search.png' %}" ></button>
             </form>
+            <div class="category-links">
+                <ul>
+                    <li><a href="{% url 'home' %}?q=portrait">Portrait</a></li>
+                    <li><a href="{% url 'home' %}?q=landscape">Landscape</a></li>
+                    <li><a href="{% url 'home' %}?q=technology">Technology</a></li>
+                    <li><a href="{% url 'home' %}?q=sports">Sports</a></li>
+                    <li><a href="{% url 'home' %}?q=fashion">Fashion</a></li>
+                    <li><a href="{% url 'home' %}?q=science">Science</a></li>
+                    <li><a href="{% url 'home' %}?q=food">Food</a></li>
+                </ul>
+            </div>
         </div>
 
     </div>
 
     <div class="container" id="explore">
-        {% for image in uploads %}
-            <div class="image">
-                <img src="{{ image.image.url }}" >
-                <a href="{{ image.image.url }}" download="ampics-photos-{{ image.image.id }}"><img src="{% static 'images/downloads.png' %}" ></a>
+        {% for upload in uploads %}
+        <div class="image">
+            <img src="{{ upload.image.url }}" >
+            <div class="wrapper">
+                <div class="info">
+                    <img src="{{ upload.account.profile_pic.url }}" alt="">
+                    <p>{{ upload.account.name }}</p>
+                </div>
+                <a href="{{ upload.image.url }}" download="ampics-photos {{ image.image.id }}">
+                    Download
+                </a>
             </div>
+        </div>
         {% endfor %}
     </div>
 
@@ -94,10 +117,10 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit deserunt a id consectetur animi aliquam quia, doloribus voluptas reprehenderit placeat nemo praesentium iure quae error magnam quam eum dolorum?
             </p>
             <ul>
-                <li><a href="https://facebook.com/"><img src="{% static 'images/facebook.png' %}" ></a></li>
-                <li><a href="https://twitter.com/"><img src="{% static 'images/twitter.png' %}" ></a></li>
-                <li><a href="https://instagram.com/its.hektic" target="blank"><img src="{% static 'images/instagram.png' %}" ></a></li>
-                <li><a href="https://youtube.com/"><img src="{% static 'images/youtube.png' %}" ></a></li>
+                <li><a href="https://facebook.com/" target="blank"><img src="{% static 'images/facebook.png' %}" ></a></li>
+                <li><a href="https://twitter.com/its_deluxe_" target="blank"><img src="{% static 'images/twitter.png' %}" ></a></li>
+                <li><a href="https://instagram.com/_del.ux.e" target="blank"><img src="{% static 'images/instagram.png' %}" ></a></li>
+                <li><a href="https://youtube.com/" target="blank"><img src="{% static 'images/youtube.png' %}" ></a></li>
             </ul>
         </div>
         <div class="quicklinks">
